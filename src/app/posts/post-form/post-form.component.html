@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3 class="text-primary">Add New Post</h3>
+    </div>
+  </div>
+
+  <form #postForm="ngForm">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="card shadow">
+          <div class="card-body">
+            <div class="form-group mb-4">
+              <label for="title">Title</label>
+              <input
+                name="title"
+                id="title"
+                type="text"
+                class="form-control"
+                (keyup)="generateSlug($event)"
+              />
+            </div>
+            <div class="form-group mb-4">
+              <label for="slug">Slug</label>
+              <input
+                name="slug"
+                id="slug"
+                type="text"
+                class="form-control"
+                [(ngModel)]="slug"
+                disabled
+              />
+            </div>
+            <div class="form-group mb-4">
+              <label for="excerpt">Excerpt</label>
+              <textarea
+                name="excerpt"
+                id="excerpt"
+                cols="30"
+                rows="10"
+                class="form-control"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group mb-4">
+          <label for="category">Please select a category</label>
+          <select name="" id="category" class="form-control">
+            <option value="" disabled>Please select a category</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="image">Post image</label>
+          <img [src]="imgSrc" class="form-control img-fluid img-preview" />
+          <input
+            name="image"
+            id="image"
+            type="file"
+            class="form-control"
+            accept="image/*"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3 mb-5">
+      <div class="col-md-12">
+        <div class="card shadow">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="content">Content</label>
+              <textarea
+                name="content"
+                id="content"
+                cols="30"
+                rows="10"
+                class="form-control"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-md-12 text-center mb-5">
+            <button class="btn btn-primary m-2">Save post</button>
+            <button class="btn btn-warning m-2" routerLink="/posts">
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

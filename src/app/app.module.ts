@@ -11,6 +11,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { PostsComponent } from './posts/posts.component';
+import { PostFormComponent } from './posts/post-form/post-form.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { environment } from 'src/environments/environment';
     ToastComponent,
     DashboardComponent,
     CategoriesComponent,
+    PostsComponent,
+    PostFormComponent,
   ],
   imports: [
     BrowserModule,

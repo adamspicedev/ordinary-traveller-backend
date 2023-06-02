@@ -15,7 +15,19 @@ export class ToastService {
   toasts: ToastInfo[] = [];
 
   showSuccess(header: string, body: string) {
-    this.toasts.push({ header, body, className: 'bg-success text-light' });
+    this.toasts.push({
+      header,
+      body,
+      className: 'bg-success text-light mt-2 mb-2',
+    });
+  }
+
+  showError(header: string, body: string) {
+    this.toasts.push({
+      header,
+      body,
+      className: 'bg-danger text-light mt-2 mb-2',
+    });
   }
 
   remove(toast: ToastInfo) {

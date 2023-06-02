@@ -1,5 +1,7 @@
 <div class="card col-12">
-  <div class="card-header">Add a new category</div>
+  <div class="card-header">
+    {{ formStatus === "Add" ? "Add a new" : "Update a" }} category
+  </div>
   <div class="card-body">
     <form
       class="row"
@@ -10,7 +12,7 @@
         <label for="category" class="visually-hidden">Password</label>
         <input
           #newCategory="ngModel"
-          ngModel
+          [(ngModel)]="selectedCategory!.data!.category"
           required
           name="category"
           type="test"
@@ -34,7 +36,7 @@
           type="submit"
           class="btn btn-primary mb-3"
         >
-          Save
+          {{ formStatus === "Add" ? "Save" : "Edit" }}
         </button>
       </div>
     </form>
@@ -56,7 +58,28 @@
           <tr *ngFor="let category of currentCategories; let i = index">
             <th scope="row">{{ i }}</th>
             <td>{{ category.data.category }}</td>
-            <td></td>
+            <td>
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic mixed styles example"
+              >
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="onEdit(category)"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="onDelete(category.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Category } from '../models/category';
 import { ToastService } from './toast.service';
 import { map } from 'rxjs/operators';
+import { FirestoreCategory } from '../categories/categories.component';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +18,13 @@ export class CategoriesService {
     this.firestore
       .collection('categories')
       .add(formData.category)
-      .then((docRef) => {
+      .then(() => {
         this.toastService.showSuccess(
           'Done',
           'Your category has been saved successfully!'
         );
       })
-      .catch((error) => console.log(error));
+      .catch((error) => this.toastService.showError('Error', error));
   }
 
   loadData() {
@@ -39,5 +40,32 @@ export class CategoriesService {
           });
         })
       );
+  }
+
+  updateData(category: FirestoreCategory) {
+    console.log('category', category);
+    this.firestore
+      .doc(`categories/${category.id}`)
+      .update(category.data)
+      .then(() => {
+        this.toastService.showSuccess(
+          'Done',
+          'Your category has been updated successfully!'
+        );
+      })
+      .catch((error) => this.toastService.showError('Error', error));
+  }
+
+  deleteData(id: string) {
+    this.firestore
+      .doc(`categories/${id}`)
+      .delete()
+      .then(() => {
+        this.toastService.showSuccess(
+          'Done',
+          'Your category has been deleted successfully!'
+        );
+      })
+      .catch((error) => this.toastService.showError('Error', error));
   }
 }
