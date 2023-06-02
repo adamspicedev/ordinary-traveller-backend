@@ -1,0 +1,65 @@
+<div class="card col-12">
+  <div class="card-header">Add a new category</div>
+  <div class="card-body">
+    <form
+      class="row"
+      #categoryForm="ngForm"
+      (ngSubmit)="onSubmit(categoryForm)"
+    >
+      <div class="col-8">
+        <label for="category" class="visually-hidden">Password</label>
+        <input
+          #newCategory="ngModel"
+          ngModel
+          required
+          name="category"
+          type="test"
+          class="form-control"
+          id="category"
+          placeholder="Category name..."
+          [ngClass]="{
+            'is-invalid': newCategory.touched && newCategory.invalid
+          }"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="newCategory.touched && newCategory.invalid"
+        >
+          Category field is required
+        </div>
+      </div>
+      <div class="col-4 d-grid">
+        <button
+          [disabled]="categoryForm.invalid"
+          type="submit"
+          class="btn btn-primary mb-3"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row mt-5 mb-5">
+  <div class="col-md-12">
+    <div class="card shadow p-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Number</th>
+            <th s cope="col">Category</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of currentCategories; let i = index">
+            <th scope="row">{{ i }}</th>
+            <td>{{ category.data.category }}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
